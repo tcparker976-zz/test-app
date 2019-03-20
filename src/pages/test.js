@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React from "react"
 
 class Test extends React.Component {
   constructor() {
