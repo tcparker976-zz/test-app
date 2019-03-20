@@ -5,6 +5,7 @@ class App extends Component {
     return (
      <div>
         <h1>Googlebot will always crawl</h1>
+        <p>This is a test</p>
       </div>
     );
   }
