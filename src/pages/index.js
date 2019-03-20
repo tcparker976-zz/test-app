@@ -1,25 +1,72 @@
-import React, { Component, Fragment } from "react"
-import Helmet from "react-helmet"
+import React from "react"
+import { css } from "@emotion/core"
+import { Link, graphql } from "gatsby"
+import { rhythm } from "../utils/typography"
+import Layout from "../components/layout"
 
-class App extends Component {
-  render() {
-    return (
-    <Fragment>
-      <Helmet
-        title="Test-Project"
-        meta={[
-          { name: 'google-site-verification', content: 'bCj3HhIqDlnOUnl8OuWzxcoPCcWXIYLNEI68kALtrKQ' }
-        ]}
-      />
+export default ({ data }) => {
+  return (
+    <Layout>
       <div>
-        <h1>Googlebot will always crawl</h1>
-        <p>This is a test</p>
+        <h1
+          css={css`
+            display: inline-block;
+            border-bottom: 1px solid;
+          `}
+        >
+          Amazing Pandas Eating Things
+        </h1>
+        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <div key={node.id}>
+            <Link
+              to={node.fields.slug}
+              css={css`
+                text-decoration: none;
+                color: inherit;
+              `
+}
+            >
+              <h3
+                css={css`
+                  margin-bottom: ${rhythm(1 / 4)};
+                `}
+              >
+                {node.frontmatter.title}{" "}
+                <span
+                  css={css`
+                    color: #bbb;
+                  `}
+                >
+                  — {node.frontmatter.date}
+                </span>
+              </h3>
+              <p>{node.excerpt}</p>
+            </Link> 
+          </div>
+        ))}
       </div>
-    </Fragment>
-    
-    );
-  }
+    </Layout>
+  )
 }
 
-
-export default App
+export const query = graphql`
+  query {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`
