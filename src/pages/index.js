@@ -8,7 +8,6 @@ class App extends Component {
       <Helmet
         title="Test-Project"
         meta={[
-          { name: 'description', content: 'Your description here' },
           { name: 'google-site-verification', content: 'bCj3HhIqDlnOUnl8OuWzxcoPCcWXIYLNEI68kALtrKQ' }
         ]}
       />
