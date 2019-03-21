@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: http://test-project-production.herokuapp.com/sitemap.xml
