@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://test-project-production.herokuapp.com/`,
     title: `Pandas Eating Lots`,
   },
   plugins: [
