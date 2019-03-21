@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://test-project-production.herokuapp.com/`,
+    siteUrl: `https://test-project-production.herokuapp.com`,
     title: `Pandas Eating Lots`,
   },
   plugins: [
@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://test-project-production.herokuapp.com/',
+        host: 'https://test-project-production.herokuapp.com',
         sitemap: 'https://test-project-production.herokuapp.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
