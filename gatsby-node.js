@@ -1,9 +1,7 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  console.log(node.internal.type)
+  // const { createNodeField } = actions
   // if (node.internal.type === `MarkdownRemark`) {
   //   const slug = createFilePath({ node, getNode, basePath: `pages` })
   //   createNodeField({
@@ -26,7 +24,6 @@ exports.createPages = async ({ graphql, actions }) => {
         }	
       }
   `)
-  console.log('d', data)
   data.swapi.allSpecies.forEach(specie => {
     actions.createPage({
       path: `/${specie.name.toLowerCase().split(' ').join('-')}`,
