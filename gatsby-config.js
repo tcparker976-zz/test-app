@@ -16,6 +16,14 @@ module.exports = {
         url: "https://api.graphcms.com/simple/v1/swapi",
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://test-project-production.herokuapp.com/',
+        sitemap: 'https://test-project-production.herokuapp.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
