@@ -5,6 +5,7 @@ import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
 export default ({ data }) => {
+  console.log(data.swapi.allSpecies.length)
   return (
     <Layout>
       <div>
@@ -16,8 +17,8 @@ export default ({ data }) => {
         >
           Amazing Pandas Eating Things
         </h1>
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        <h4>{data.swapi.allSpecies.length} Posts</h4>
+        {/*{data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
             <Link
               to={node.fields.slug}
@@ -43,7 +44,7 @@ export default ({ data }) => {
               </h3>
               <p>{node.excerpt}</p>
             </Link> 
-          </div>
+          </div> */}
         ))}
       </div>
     </Layout>
@@ -52,20 +53,10 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-          }
-          fields {
-            slug
-          }
-          excerpt
-        }
+    swapi {
+      allSpecies {
+        name
+        classification
       }
     }
   }
