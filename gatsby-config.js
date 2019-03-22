@@ -24,6 +24,7 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
+    `gatsby-plugin-remove-trailing-slashes`,
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
