@@ -24,14 +24,25 @@ exports.createPages = async ({ graphql, actions }) => {
         }	
       }
   `)
-  data.swapi.allSpecies.forEach(specie => {
-    actions.createPage({
-      path: `/${specie.name.toLowerCase().split(' ').join('-')}`,
-      component: path.resolve(`./src/templates/sw-species.js`),
-      context: {
-        speciesId: specie.id
-      },
-    })
+  data.swapi.allSpecies.forEach((species, i) => {
+
+    if (i % 2 === 0) {
+      actions.createPage({
+        path: `/${species.name.toLowerCase().split(' ').join('-')}`,
+        component: path.resolve(`./src/templates/sw-species.js`),
+        context: {
+          speciesId: species.id
+        },
+      })
+    } else {
+      actions.createPage({
+        path: `/${species.name.toLowerCase().split(' ').join('-')}`,
+        component: path.resolve(`./src/templates/alt-sw-species.js`),
+        context: {
+          speciesId: species.id
+        },
+      })
+    }
   })
   // return graphql(`
   //   {
