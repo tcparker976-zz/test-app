@@ -13,37 +13,55 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { data } = await graphql(`
-      {
-        swapi {
-          allSpecies {
-            id
-            name
-            classification
-          }
-        }	
+  const result = await graphql(`
+    query {
+      marketing{
+        allMarketingPages {
+          id
+          data
+          keyword
+          url
+          template
+          metadata
+        }
       }
-  `)
-  data.swapi.allSpecies.forEach((species, i) => {
-
-    if (i % 2 === 0) {
-      actions.createPage({
-        path: `/${species.name.toLowerCase().split(' ').join('-')}`,
-        component: path.resolve(`./src/templates/sw-species.js`),
-        context: {
-          speciesId: species.id
-        },
-      })
-    } else {
-      actions.createPage({
-        path: `/${species.name.toLowerCase().split(' ').join('-')}`,
-        component: path.resolve(`./src/templates/alt-sw-species.js`),
-        context: {
-          speciesId: species.id
-        },
-      })
     }
+  `)
+  // console.log('DATA', result.data.marketing.allMarketingPages)
+  result.data.marketing.allMarketingPages.forEach((page, i) => {
+    const { id, template, url, keyword } = page
+    actions.createPage({
+      path: url,
+      component: path.resolve(`./src/templates/${template}.js`),
+      context: {
+        id,
+        keyword
+      }
+    })
   })
+  // data.swapi.allSpecies.forEach((species, i) => {
+    // console.log('HELLOO!')
+    // const {name, classification} = species
+    // if (i % 2 === 0) {
+    //   actions.createPage({
+    //     path: `/${species.name.toLowerCase().split(' ').join('-')}`,
+    //     component: path.resolve(`./src/templates/sw-species.js`),
+    //     context: {
+    //       name,
+    //       classification,
+    //     },
+    //   })
+    // } else {
+    //   actions.createPage({
+    //     path: `/${species.name.toLowerCase().split(' ').join('-')}`,
+    //     component: path.resolve(`./src/templates/alt-sw-species.js`),
+    //     context: {
+    //       name,
+    //       classification,
+    //     },
+    //   })
+    // }
+  // })
   // return graphql(`
   //   {
   //     swapi {

@@ -2,9 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
-export default ({ data }) => {
-  // const race = data.race
-  const { name, classification } = data.swapi.Species
+export default (props) => {
+  const { name, classification } = props.pageContext
   return (
     <Layout>
       <div>
@@ -17,13 +16,13 @@ export default ({ data }) => {
   )
 }
 
-export const query = graphql`
-  query($speciesId: ID!) {
-    swapi {
-      Species(id: $speciesId) {
-        name
-        classification
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($speciesId: ID!) {
+//     swapi {
+//       Species(id: $speciesId) {
+//         name
+//         classification
+//       }
+//     }
+//   }
+// `

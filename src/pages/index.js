@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 export default ({ data }) => {
-  console.log(data.swapi.allSpecies.length)
+  // console.log(data.swapi.allSpecies.length)
   return (
     <Layout>
       <div>
@@ -14,14 +14,13 @@ export default ({ data }) => {
             border-bottom: 1px solid;
           `}
         >
-          Star Wars Species List
+          Using Reusable Templates
         </h1>
-        <h4>{data.swapi.allSpecies.length} Species</h4>
+        <h4>There are {data.marketing.allMarketingPages.length} Pages</h4>
         <ul>
-          {data.swapi.allSpecies.map(({ name }) => (
-            // console.log(species)
-            <Link to={`/${name.toLowerCase()}`}>
-              <li>{name}</li>
+          {data.marketing.allMarketingPages.map(({ url }, i) => (
+            <Link key={`${i}`} to={url}>
+              <li>{url.slice(1)}</li>
             </Link>
           ))}
         </ul>
@@ -30,12 +29,14 @@ export default ({ data }) => {
   )
 }
 
+
+
+
 export const query = graphql`
   query {
-    swapi {
-      allSpecies {
-        name
-        classification
+    marketing{
+      allMarketingPages {
+        url
       }
     }
   }

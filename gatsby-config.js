@@ -9,11 +9,11 @@ module.exports = {
       resolve: "gatsby-source-graphql",
       options: {
         // This type will contain remote schema Query type
-        typeName: "SWAPI",
+        typeName: "allMarketingPages",
         // This is field under which it's accessible
-        fieldName: "swapi",
+        fieldName: "marketing",
         // Url to query from
-        url: "https://api.graphcms.com/simple/v1/swapi",
+        url: "http://localhost:4000/api/graphs",
       },
     },
     {
